@@ -3,58 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World Cup Goal Tracker</title>
-    <!-- Linking our external styles -->
+    <title>My Awesome Website & World Cup Tracker</title>
+    <!-- Linking the CSS file so the HTML gets styled -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1>🏆 World Cup Hub</h1>
-        <p>Track live tournament statistics and build your dev skills!</p>
+        <h1>Welcome to My Coding Journey! 🚀</h1>
+        <p>Building my very first website hosted on GitHub Pages.</p>
     </header>
 
     <main>
-        <!-- Section for the active goal tracker -->
-        <section id="goal-tracker">
-            <h2>Tournament Goal Counter</h2>
-            <p class="description">Keep track of the overall excitement. Click the soccer ball every time a goal is scored!</p>
+        <!-- NEW: World Cup Quarter-Finals Tracker Section -->
+        <section class="tracker-section">
+            <h2>🏆 2026 World Cup Quarter-Finals</h2>
+            <p class="section-intro">Track the final eight teams fighting for football's ultimate prize!</p>
             
-            <div class="counter-box">
-                <!-- Large digital display for total goals -->
-                <span id="goalCount">0</span>
-                <p>Total Goals Scored</p>
-            </div>
+            <div class="bracket-container">
+                <!-- Match 1 -->
+                <div class="match-card">
+                    <div class="match-badge">QF 1 | July 9</div>
+                    <div class="team-row">🇫🇷 France</div>
+                    <div class="vs">vs</div>
+                    <div class="team-row">🇲🇦 Morocco</div>
+                    <div class="venue-info">Boston Stadium</div>
+                </div>
 
-            <!-- Interactive button to simulate adding a goal -->
-            <button id="goalButton">⚽ Log a Goal!</button>
+                <!-- Match 2 -->
+                <div class="match-card">
+                    <div class="match-badge">QF 2 | July 10</div>
+                    <div class="team-row">🇪🇸 Spain</div>
+                    <div class="vs">vs</div>
+                    <div class="team-row">🇧🇪 Belgium</div>
+                    <div class="venue-info">Los Angeles Stadium</div>
+                </div>
+
+                <!-- Match 3 -->
+                <div class="match-card">
+                    <div class="match-badge">QF 3 | July 11</div>
+                    <div class="team-row">🇳🇴 Norway</div>
+                    <div class="vs">vs</div>
+                    <div class="team-row">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div>
+                    <div class="venue-info">Miami Stadium</div>
+                </div>
+
+                <!-- Match 4 -->
+                <div class="match-card">
+                    <div class="match-badge">QF 4 | July 11</div>
+                    <div class="team-row">🇦🇷 Argentina</div>
+                    <div class="vs">vs</div>
+                    <div class="team-row TBD">TBD (COL / SUI)</div>
+                    <div class="venue-info">Kansas City Stadium</div>
+                </div>
+            </div>
         </section>
 
-        <!-- Section for team-specific metrics -->
-        <section id="team-stats">
-            <h2>Top Team Standings</h2>
-            <div class="team-grid">
-                <!-- Argentina Team Tracker Box -->
-                <div class="team-card">
-                    <h3>Argentina 🇦🇷</h3>
-                    <p>Goals: <span id="argGoals">3</span></p>
-                    <button class="mini-btn" onclick="addTeamGoal('argGoals')">+1 Goal</button>
-                </div>
-                <!-- Belgium Team Tracker Box -->
-                <div class="team-card">
-                    <h3>Belgium 🇧🇪</h3>
-                    <p>Goals: <span id="belGoals">4</span></p>
-                    <button class="mini-btn" onclick="addTeamGoal('belGoals')">+1 Goal</button>
-                </div>
-            </div>
+        <section class="about-section">
+            <h2>About Me</h2>
+            <p>Hi! I am a student developer learning how to build and design websites. Stay tuned to see how this site evolves!</p>
+        </section>
+
+        <section class="interactive-section">
+            <h2>Interact with My Site</h2>
+            <p>Click the magical button below to see JavaScript in action!</p>
+            <!-- This button has an ID so our JavaScript can find it and watch for clicks -->
+            <button id="magic-btn">Click Me!</button>
+            <p id="magic-message" class="hidden"></p>
         </section>
     </main>
 
     <footer>
-        <p>© 2026 Live Tournament Dashboard Tracker</p>
+        <p>Created with luv by Me | © 2026</p>
     </footer>
 
-    <!-- Linking our JavaScript logic -->
+    <!-- Linking the JavaScript file at the bottom so the HTML loads first -->
     <script src="script.js"></script>
 </body>
 </html>
