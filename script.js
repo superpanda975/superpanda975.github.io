@@ -1,105 +1,129 @@
-/* --- Global Reset & Base Styling --- */
+/* Resetting default margins and setting up a clean, modern font */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    background-color: #f0f3f5;
-    color: #2c3e50;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
 }
 
+/* Styling the header with a nice dark background and centered text */
 header {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
     color: white;
-    width: 100%;
     text-align: center;
-    padding: 2rem 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 2rem 1rem;
 }
 
+/* Creating a neat container layout for our main content sections */
 main {
-    max-width: 700px;
-    width: 90%;
+    max-width: 800px;
     margin: 2rem auto;
+    padding: 0 1rem;
 }
 
 section {
-    background: #ffffff;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    text-align: center;
-}
-
-/* --- Goal Counter Visuals --- */
-.counter-box {
-    background: #f8f9fa;
-    border: 2px solid #e9ecef;
-    border-radius: 8px;
+    background: white;
     padding: 1.5rem;
-    margin: 1.5rem auto;
-    max-width: 200px;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#goalCount {
-    font-size: 4rem;
+/* NEW: Layout styles for the World Cup Bracket Tracker */
+.section-intro {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.bracket-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.match-card {
+    background-color: #fafafa;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.match-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(79, 70, 229, 0.15);
+    border-color: #4f46e5;
+}
+
+.match-badge {
+    display: inline-block;
+    background-color: #e0e7ff;
+    color: #4f46e5;
+    font-size: 0.75rem;
     font-weight: bold;
-    color: #e74c3c;
-    display: block;
-    line-height: 1;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
 }
 
-/* --- Buttons --- */
+.team-row {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #111827;
+}
+
+.team-row.TBD {
+    color: #9ca3af;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.vs {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin: 0.2rem 0;
+}
+
+.venue-info {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.75rem;
+    border-top: 1px dashed #e5e7eb;
+    padding-top: 0.5rem;
+}
+
+/* Making our interactive button look sleek and clickable */
 button {
-    background-color: #27ae60;
+    background-color: #4f46e5;
     color: white;
     border: none;
-    padding: 12px 24px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(39, 174, 96, 0.3);
-    transition: all 0.2s ease;
+    transition: background 0.3s ease;
 }
 
+/* Adding a hover effect to make the button feel reactive */
 button:hover {
-    background-color: #219653;
-    transform: translateY(-2px);
+    background-color: #4338ca;
 }
 
-.team-grid {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 1.5rem;
+/* Styling the text that our JavaScript will reveal */
+#magic-message {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #059669;
 }
 
-.team-card {
-    background: #fdfdfd;
-    border: 1px solid #e2e8f0;
-    padding: 1rem;
-    border-radius: 8px;
-    flex: 1;
-}
-
-.mini-btn {
-    padding: 6px 12px;
-    font-size: 0.9rem;
-    background-color: #34495e;
-    box-shadow: none;
-}
-
-.mini-btn:hover {
-    background-color: #2c3e50;
-}
-
+/* Footer styling stuck neatly at the bottom */
 footer {
-    margin-top: auto;
-    color: #7f8c8d;
-    padding: 2rem;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #666;
 }
