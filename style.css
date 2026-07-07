@@ -31,15 +31,15 @@ section {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* NEW: Layout styles for the World Cup Bracket Tracker */
 .section-intro {
     color: #666;
     margin-bottom: 1.5rem;
 }
 
+/* Layout styles for the World Cup Bracket Tracker */
 .bracket-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1rem;
 }
 
@@ -58,6 +58,12 @@ section {
     border-color: #4f46e5;
 }
 
+/* Style class if a match is actively live right now */
+.match-card.live {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
 .match-badge {
     display: inline-block;
     background-color: #e0e7ff;
@@ -69,16 +75,35 @@ section {
     margin-bottom: 0.75rem;
 }
 
+.match-badge.live-badge {
+    background-color: #ef4444;
+    color: white;
+}
+
 .team-row {
     font-weight: 600;
     font-size: 1.05rem;
     color: #111827;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2rem 0.5rem;
 }
 
-.team-row.TBD {
-    color: #9ca3af;
-    font-style: italic;
-    font-weight: 400;
+.team-name-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.team-crest {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.winner {
+    color: #059669;
 }
 
 .vs {
@@ -96,7 +121,7 @@ section {
     padding-top: 0.5rem;
 }
 
-/* Making our interactive button look sleek and clickable */
+/* Interactive button styles */
 button {
     background-color: #4f46e5;
     color: white;
@@ -108,19 +133,16 @@ button {
     transition: background 0.3s ease;
 }
 
-/* Adding a hover effect to make the button feel reactive */
 button:hover {
     background-color: #4338ca;
 }
 
-/* Styling the text that our JavaScript will reveal */
 #magic-message {
     margin-top: 1rem;
     font-weight: bold;
     color: #059669;
 }
 
-/* Footer styling stuck neatly at the bottom */
 footer {
     text-align: center;
     padding: 1rem;
