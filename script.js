@@ -1,118 +1,109 @@
+// Find the empty bracket container in our HTML where the match cards will be drawn
 const bracketContainer = document.getElementById('bracket-container');
 
 // =======================================================
-// REAL WORLD CUP & LIVE FOOTBALL DATA FETCH ENGINE
+// 1. DYNAMIC FETCH ENGINE (Reads from your custom JSON)
 // =======================================================
 function fetchRealLiveScores() {
-    // This is the endpoint address for scheduled global matches
-    const url = 'https://api.football-data.org/v4/matches';
+    // We are fetching your standalone data file from your repository.
+    // This bypasses CORS entirely and behaves exactly like a private backend API!
+    const url = 'wc-data.json'; 
     
-    // Authenticating your secure request using your brand new API key
-    fetch(url, {
-        method: 'GET',
-        headers: {
-            'X-Auth-Token': 'cccf93ef9ced4a7b8cc4ac012fe30dfa'
-        }
-    })
+    fetch(url)
     .then(response => {
+        // If you forgot to create the file or misspelled the name, this error catches it
         if (!response.ok) {
-            throw new Error(`HTTP Error! Status: ${response.status}`);
+            throw new Error("Could not find your wc-data.json file.");
         }
-        return response.json(); // Map data to objects
+        return response.json(); // Translate the JSON text into a live JavaScript array
     })
-    .then(apiData => {
-        // football-data.org packages all match objects inside an array called .matches
-        const actualMatches = apiData.matches; 
-        
-        // Feed the matches array into your UI display engine
+    .then(actualMatches => {
+        // Feed the array directly into your UI renderer engine below
         renderBracket(actualMatches);
     })
     .catch(error => {
         console.error("API Fetch Error:", error);
         bracketContainer.innerHTML = `
             <div style="text-align:center; color:#ef4444; padding: 1rem;">
-                <p>❌ Failed to fetch live server data.</p>
-                <small>Tip: Browser privacy extensions can sometimes block external cross-site API requests on local setups!</small>
+                <p>❌ Failed to load match data feed.</p>
+                <small>Make sure you have created your <strong>wc-data.json</strong> file in the exact same folder!</small>
             </div>
         `;
     });
 }
 
 // =======================================================
-// UI RENDERING ENGINE (Bespoke layout mapping for football-data.org v4)
+// 2. UI RENDERING ENGINE (Draws the cards onto the screen)
 // =======================================================
 function renderBracket(matches) {
-    bracketContainer.innerHTML = ""; // Wipe loading text
+    bracketContainer.innerHTML = ""; // Wipe out the loading placeholder text
 
+    // Safety check: if the file is completely empty, let the visitor know
     if (!matches || matches.length === 0) {
-        bracketContainer.innerHTML = "<p style='text-align:center; color:#666;'>No matches scheduled for today!</p>";
+        bracketContainer.innerHTML = "<p style='text-align:center; color:#666;'>No matches found in your database!</p>";
         return;
     }
 
-    // Limit to the first 8 matches to create a clean display grid
-    const displayLimit = matches.slice(0, 8);
-
-    displayLimit.forEach(match => {
-        // Map data paths precisely to match football-data.org layout rules
-        const homeTeamName = match.homeTeam.name;
-        const homeTeamCrest = match.homeTeam.crest;
-        const awayTeamName = match.awayTeam.name;
-        const awayTeamCrest = match.awayTeam.crest;
+    // Loop through your matches array and dynamically build the HTML cards
+    matches.forEach(match => {
+        // Read properties cleanly from your custom JSON layout
+        const homeTeamName = match.team1;
+        const awayTeamName = match.team2;
         
-        // Handle logic for checking scores safely
-        const homeScore = match.score.fullTime.home !== null ? match.score.fullTime.home : "-";
-        const awayScore = match.score.fullTime.away !== null ? match.score.fullTime.away : "-";
+        // Show actual scores if the match is live or finished; otherwise show a placeholder dash (-)
+        const homeScore = match.status !== "Upcoming" ? match.team1Score : "-";
+        const awayScore = match.status !== "Upcoming" ? match.team2Score : "-";
         
-        // Detect match statuses (IN_PLAY means live!)
-        const isLive = match.status === "IN_PLAY" || match.status === "PAUSED";
+        // Dynamic UI Enhancements: Check if a match is actively live right now
+        const isLive = match.status === "Live";
         const cardClass = isLive ? "match-card live" : "match-card";
         const badgeClass = isLive ? "match-badge live-badge" : "match-badge";
         const badgeText = isLive ? "🔴 LIVE NOW" : match.status;
 
+        // Apply custom green highlights to text if a winner is specified (1 for home, 2 for away)
+        const winner1Class = match.winner === 1 ? "winner" : "";
+        const winner2Class = match.winner === 2 ? "winner" : "";
+
+        // Assemble the HTML template string
         const matchHTML = `
             <div class="${cardClass}">
                 <div class="${badgeClass}">${badgeText}</div>
                 
-                <div class="team-row">
-                    <div class="team-name-group">
-                        <img src="${homeTeamCrest}" class="team-crest" alt="">
-                        <span>${homeTeamName}</span>
-                    </div>
+                <div class="team-row ${winner1Class}">
+                    <span>${homeTeamName}</span>
                     <span>${homeScore}</span>
                 </div>
                 
                 <div class="vs">vs</div>
                 
-                <div class="team-row">
-                    <div class="team-name-group">
-                        <img src="${awayTeamCrest}" class="team-crest" alt="">
-                        <span>${awayTeamName}</span>
-                    </div>
+                <div class="team-row ${winner2Class}">
+                    <span>${awayTeamName}</span>
                     <span>${awayScore}</span>
                 </div>
                 
-                <div class="venue-info">${match.competition.name}</div>
+                <div class="venue-info">${match.stage} • ${match.venue}</div>
             </div>
         `;
         
+        // Inject the newly generated card straight into the live page container
         bracketContainer.innerHTML += matchHTML;
     });
 }
 
-// Trigger data fetching engine instantly on execution
+// Kick off the script immediately when the browser loads the page!
 fetchRealLiveScores();
 
 
 // ==========================================
-// MAGIC MESSAGE ENGINE
+// 3. INTERACTIVE MAGIC MESSAGE ENGINE
 // ==========================================
 const magicButton = document.getElementById('magic-btn');
 const magicMessage = document.getElementById('magic-message');
 
 const messages = [
-    "🎉 Awesome job! Your API tracker is live using an authentic server authentication token!",
-    "🚀 Fun Fact: Football-data.org aggregates matchups across 12 massive international leagues completely in the background!",
-    "🌟 You are officially an API-Driven Full-Stack Web Developer!"
+    "🎉 Brilliant choice! Your site is now powered by a stable, clean custom JSON database architecture.",
+    "🚀 Fun Fact: By separating your data from your display logic, you are practicing true modern software architecture patterns!",
+    "🌟 You are officially an architecture-driven web developer!"
 ];
 
 magicButton.addEventListener('click', () => {
