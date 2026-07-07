@@ -1,44 +1,23 @@
-// Wait until the web page has entirely loaded
-document.addEventListener("DOMContentLoaded", () => {
+// Step 1: Find the elements on the page using their unique IDs
+const magicButton = document.getElementById('magic-btn');
+const magicMessage = document.getElementById('magic-message');
+
+// Step 2: Create an array of fun messages to cycle through (Now updated with World Cup Hype!)
+const messages = [
+    "🎉 Look at you go! You just ran your first JavaScript function!",
+    "🏆 Fun Fact: The 2026 World Cup is the largest ever, with 48 teams competing across 3 host nations!",
+    "🔥 Prediction Time: Who do you think is going to win it all this year?",
+    "🌟 You are officially a web developer now!"
+];
+
+// Step 3: Listen for a 'click' event on the button
+magicButton.addEventListener('click', () => {
+    // Pick a random message from our array
+    const randomIndex = Math.floor(Math.random() * messages.length);
     
-    // Set our initial starting global goal counter
-    let totalGoals = 7; // Starting with a few dummy logged goals from recent matches
+    // Update the text inside the magicMessage paragraph
+    magicMessage.textContent = messages[randomIndex];
     
-    const goalCountDisplay = document.getElementById("goalCount");
-    const goalButton = document.getElementById("goalButton");
-
-    // Function to update the main goal text display
-    function updateDisplay() {
-        goalCountDisplay.textContent = totalGoals;
-    }
-
-    // Set the initial total on page load
-    updateDisplay();
-
-    // Event listener when the user logs a general goal
-    goalButton.addEventListener("click", () => {
-        totalGoals++; // Increase total by 1
-        updateDisplay(); // Refresh the screen text
-        
-        // Add a temporary subtle flash effect to the counter
-        goalCountDisplay.style.transform = "scale(1.2)";
-        goalCountDisplay.style.transition = "transform 0.1s ease";
-        setTimeout(() => {
-            goalCountDisplay.style.transform = "scale(1)";
-        }, 100);
-    });
+    // Ensure the message paragraph is visible
+    magicMessage.style.display = 'block';
 });
-
-// Global function to add goals to specific team blocks
-function addTeamGoal(teamElementId) {
-    const teamSpan = document.getElementById(teamElementId);
-    let currentGoals = parseInt(teamSpan.textContent);
-    currentGoals++;
-    teamSpan.textContent = currentGoals;
-
-    // Simultaneously increment the grand total automatically
-    const totalDisplay = document.getElementById("goalCount");
-    let overallTotal = parseInt(totalDisplay.textContent);
-    overallTotal++;
-    totalDisplay.textContent = overallTotal;
-}
