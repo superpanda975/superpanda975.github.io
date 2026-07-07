@@ -1,0 +1,38 @@
+[
+    {
+        "id": "QF1",
+        "stage": "Quarter-Final 1",
+        "date": "July 9",
+        "team1": "🇫🇷 France",
+        "team2": "🇲🇦 Morocco",
+        "team1Score": 0,
+        "team2Score": 0,
+        "status": "Upcoming",
+        "winner": null,
+        "venue": "Boston Stadium"
+    },
+    {
+        "id": "QF2",
+        "stage": "Quarter-Final 2",
+        "date": "July 10",
+        "team1": "🇪🇸 Spain",
+        "team2": "🇧🇪 Belgium",
+        "team1Score": 2,
+        "team2Score": 3,
+        "status": "Completed",
+        "winner": 2,
+        "venue": "Los Angeles Stadium"
+    },
+    {
+        "id": "QF3",
+        "stage": "Quarter-Final 3",
+        "date": "July 11",
+        "team1": "🇳🇴 Norway",
+        "team2": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+        "team1Score": 1,
+        "team2Score": 1,
+        "status": "Live",
+        "winner": null,
+        "venue": "Miami Stadium"
+    }
+]
