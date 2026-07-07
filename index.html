@@ -3,33 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Awesome Website</title>
+    <title>World Cup Goal Tracker</title>
+    <!-- Linking our external styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1>Welcome to My Website!</h1>
-        <p>Built by a future web developer.</p>
+        <h1>🏆 World Cup Hub</h1>
+        <p>Track live tournament statistics and build your dev skills!</p>
     </header>
 
     <main>
-        <section id="about">
-            <h2>About This Project</h2>
-            <p>This is a starter skeleton for my web development journey. Right now, it's a blank canvas waiting for my personal touch!</p>
+        <!-- Section for the active goal tracker -->
+        <section id="goal-tracker">
+            <h2>Tournament Goal Counter</h2>
+            <p class="description">Keep track of the overall excitement. Click the soccer ball every time a goal is scored!</p>
+            
+            <div class="counter-box">
+                <!-- Large digital display for total goals -->
+                <span id="goalCount">0</span>
+                <p>Total Goals Scored</p>
+            </div>
+
+            <!-- Interactive button to simulate adding a goal -->
+            <button id="goalButton">⚽ Log a Goal!</button>
         </section>
 
-        <section id="interactive">
-            <h2>See JavaScript in Action</h2>
-            <button id="magicButton">Click Me for Magic!</button>
-            <p id="magicMessage" class="hidden"></p>
+        <!-- Section for team-specific metrics -->
+        <section id="team-stats">
+            <h2>Top Team Standings</h2>
+            <div class="team-grid">
+                <!-- Argentina Team Tracker Box -->
+                <div class="team-card">
+                    <h3>Argentina 🇦🇷</h3>
+                    <p>Goals: <span id="argGoals">3</span></p>
+                    <button class="mini-btn" onclick="addTeamGoal('argGoals')">+1 Goal</button>
+                </div>
+                <!-- Belgium Team Tracker Box -->
+                <div class="team-card">
+                    <h3>Belgium 🇧🇪</h3>
+                    <p>Goals: <span id="belGoals">4</span></p>
+                    <button class="mini-btn" onclick="addTeamGoal('belGoals')">+1 Goal</button>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2026 Created with passion and code.</p>
+        <p>© 2026 Live Tournament Dashboard Tracker</p>
     </footer>
 
+    <!-- Linking our JavaScript logic -->
     <script src="script.js"></script>
 </body>
 </html>
